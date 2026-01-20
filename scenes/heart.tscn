@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://noeqp4rvxwxa"]
+
+[ext_resource type="Texture2D" uid="uid://bwnfh6u33ru5e" path="res://assets/brackeys_platformer_assets/sprites/fruit.png" id="1_v30as"]
+[ext_resource type="Script" uid="uid://cb0eqnjq4k0t0" path="res://scripts/heart.gd" id="1_ycbwg"]
+[ext_resource type="AudioStream" uid="uid://dtls1si0c1b88" path="res://assets/brackeys_platformer_assets/sounds/Fruit collect 1.wav" id="3_krgnv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v30as"]
+friction = 0.14
+bounce = 0.59
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ycbwg"]
+radius = 4.70588
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krgnv"]
+radius = 6.08276
+
+[node name="heart" type="RigidBody2D"]
+collision_layer = 0
+mass = 0.043
+physics_material_override = SubResource("PhysicsMaterial_v30as")
+script = ExtResource("1_ycbwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -4)
+scale = Vector2(1.0625, 0.984375)
+shape = SubResource("CircleShape2D_ycbwg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -5)
+scale = Vector2(1.0625, 0.984375)
+texture = ExtResource("1_v30as")
+region_enabled = true
+region_rect = Rect2(2.25854, 50.2342, 11.1512, 13.9805)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -5)
+shape = SubResource("CircleShape2D_krgnv")
+
+[node name="pick_fruit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_krgnv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

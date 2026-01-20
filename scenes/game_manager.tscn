@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq4y5ehhaatwc"]
+
+[ext_resource type="Script" uid="uid://c4hl6mb8ogjya" path="res://scripts/game_manager.gd" id="1_glms7"]
+[ext_resource type="FontFile" uid="uid://dp7m0e2hquns6" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="2_udu3i"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_glms7")
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = -1
+offset_left = 639.0
+offset_top = -151.0
+offset_right = 885.0
+offset_bottom = -128.0
+scale = Vector2(0.578227, 0.780901)
+theme_override_colors/font_color = Color(0.863111, 0.828662, 0.20555, 1)
+theme_override_fonts/font = ExtResource("2_udu3i")
+text = "Collected Coins : "

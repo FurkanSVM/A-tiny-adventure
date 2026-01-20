@@ -1,0 +1,134 @@
+[gd_scene load_steps=20 format=3 uid="uid://darb8d35iqawd"]
+
+[ext_resource type="Texture2D" uid="uid://0corybmymtnn" path="res://assets/BatSprites/BatDeath.png" id="1_ss3tx"]
+[ext_resource type="Texture2D" uid="uid://b8drtplx0gcoj" path="res://assets/BatSprites/BatMovement.png" id="1_uhqni"]
+[ext_resource type="Script" uid="uid://v47bdcn4pc2o" path="res://scripts/bat.gd" id="2_cnldk"]
+[ext_resource type="AudioStream" uid="uid://ci145nc5uetmk" path="res://assets/Sound FX_(ogg)/SFX_Lose02.ogg" id="4_ss3tx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4bhu"]
+atlas = ExtResource("1_ss3tx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0o7o"]
+atlas = ExtResource("1_ss3tx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67y1s"]
+atlas = ExtResource("1_ss3tx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5otw"]
+atlas = ExtResource("1_ss3tx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjjhm"]
+atlas = ExtResource("1_ss3tx")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8eff"]
+atlas = ExtResource("1_ss3tx")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrah6"]
+atlas = ExtResource("1_ss3tx")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnldk"]
+atlas = ExtResource("1_uhqni")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48wkk"]
+atlas = ExtResource("1_uhqni")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss3tx"]
+atlas = ExtResource("1_uhqni")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv0ya"]
+atlas = ExtResource("1_uhqni")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fn3r"]
+atlas = ExtResource("1_uhqni")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qtcx"]
+atlas = ExtResource("1_uhqni")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4bhu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4bhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0o7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67y1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5otw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjjhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8eff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrah6")
+}],
+"loop": false,
+"name": &"death",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnldk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48wkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss3tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv0ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fn3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qtcx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uhqni"]
+radius = 11.0
+
+[node name="bat" type="AnimatedSprite2D"]
+position = Vector2(1, 2)
+sprite_frames = SubResource("SpriteFrames_x4bhu")
+autoplay = "default"
+frame_progress = 0.889791
+script = ExtResource("2_cnldk")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 11
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_uhqni")
+
+[node name="dying_soung" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ss3tx")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

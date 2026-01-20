@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://qtrejhrc1osl"]
+
+[ext_resource type="Script" uid="uid://cipb85nc6e2cr" path="res://scripts/main_menu.gd" id="1_0ykhv"]
+[ext_resource type="Texture2D" uid="uid://bncgmhopw2kvo" path="res://Gemini_Generated_Image_38ho7938ho7938ho.png" id="1_yqorp"]
+[ext_resource type="AudioStream" uid="uid://c8spwoo76ct6l" path="res://assets/music/Brandon_Fiechter_-_Cobblestone_Village_(mp3.pm).mp3" id="3_2wh52"]
+
+[sub_resource type="Theme" id="Theme_ukcvp"]
+default_base_scale = 0.23
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ukcvp"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_0ykhv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(636, 368)
+texture = ExtResource("1_yqorp")
+
+[node name="Start_button" type="Button" parent="Sprite2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -528.0
+offset_top = -354.0
+offset_right = -238.0
+offset_bottom = -228.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ukcvp")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ukcvp")
+text = "START"
+
+[node name="exit_button" type="Button" parent="Sprite2D"]
+offset_left = 228.0
+offset_top = 188.0
+offset_right = 331.0
+offset_bottom = 260.0
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[node name="main_menu_theme" type="AudioStreamPlayer2D" parent="Sprite2D"]
+stream = ExtResource("3_2wh52")
+
+[connection signal="pressed" from="Sprite2D/Start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Sprite2D/exit_button" to="." method="_on_exit_button_pressed"]

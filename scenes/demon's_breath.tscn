@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://2srtr8tg8hbu"]
+
+[ext_resource type="Script" uid="uid://bm13y3ljjowdj" path="res://scripts/demon's_breath.gd" id="1_7c5vi"]
+[ext_resource type="Texture2D" uid="uid://p73ymi2ksae3" path="res://assets/Flying Demon 2D Pixel Art/Sprites/projectile.png" id="1_s6n8o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s6n8o"]
+
+[node name="Demon\'s_breath" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_7c5vi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s6n8o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 2)
+shape = SubResource("CircleShape2D_s6n8o")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
